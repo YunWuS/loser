@@ -1,22 +1,63 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import HomeView from '../views/HomeView.vue'
 
+import login from '../views/common/login.vue'
+import UserHome from '../views/common/UserHome.vue'
+import allList from '../views/common/allList.vue'
+import searchMe from '../views/user/searchMe.vue'
+import info from '../views/admin/info.vue'
+import log from '../views/super/log.vue'
+import wantAd from '../views/super/wantAd.vue'
+import adminInfo from '../views/super/adminInfo.vue'
 Vue.use(VueRouter)
 
 const routes = [
   {
     path: '/',
-    name: 'home',
-    component: HomeView
+    name: 'login',
+    component: login
   },
   {
-    path: '/about',
-    name: 'about',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/AboutView.vue')
+    path: '/UserHome',
+    name: 'UserHome',
+    component: UserHome,
+    children: [
+      {
+        path: '/allList',
+        name: 'allList',
+        component: allList,
+      },
+      {
+        path: '/searchMe',
+        name: 'searchMe',
+        component: searchMe,
+      }
+      ,
+      {
+        path: '/info',
+        name: 'info',
+        component: info,
+      }
+      ,
+      {
+        path: '/log',
+        name: 'log',
+        component: log,
+      }
+      
+      ,
+      {
+        path: '/wantAd',
+        name: 'wantAd',
+        component: wantAd,
+      }
+      ,
+      {
+        path: '/adminInfo',
+        name: 'adminInfo',
+        component: adminInfo,
+      }
+    ]
   }
 ]
 
